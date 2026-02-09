@@ -21,3 +21,4 @@ ENV/
 
 # Tasks and logs
 tasks/
+ai_agent.log

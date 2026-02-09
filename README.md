@@ -41,50 +41,127 @@ python3 groq_chat.py
 
 ## 💡 Commands
 
-| Command | Description | Example |
-|---------|-------------|---------|
-| `read: <file>` | Analyze a code file | `read: main.py explain this code` |
-| `lesson: <text>` | Log a lesson | `lesson: Always validate user input` |
-| `exit` or `quit` | Exit the application | `exit` |
+### 1. `read:` - File Analysis
+Analyze and explain code files.
 
-### File Reading Examples
+**Syntax:**
+```bash
+read: <filepath> [prompt]
+```
+
+**Examples:**
+```bash
+read: main.py
+read: ~/project/utils.py explain this
+read: /absolute/path/test.py find bugs
+```
+
+**Supported Path Formats:**
+- Relative: `test.py`, `../utils.py`
+- Absolute: `/home/ozkan/project/main.py`
+- Home directory: `~/my_project/app.py`
+
+---
+
+### 2. `write:` - Save Code Blocks
+Extract code blocks from AI responses and save to files.
+
+**Syntax:**
+```bash
+write: <filename>              # Single block or list if multiple
+write: <index> <filename>      # Write specific block (1-based index)
+write: list                    # Show all available blocks
+write: all <filename>          # Write all blocks to one file
+```
+
+**Examples:**
+```bash
+# Ask AI for code, then:
+write: test.py                 # Auto-write if 1 block found
+write: 1 main.py               # Write the 1st code block
+write: 2 utils.py              # Write the 2nd code block  
+write: list                    # Preview all code blocks
+write: all combined.txt        # Save all blocks in one file
+```
+
+**Use Case:**
+No more copy-paste! Ask AI for code → `write: filename.py` → Done! ✨
+
+---
+
+### 3. `lesson:` - Log Lessons
+Save important notes and learnings for future reference.
+
+**Syntax:**
+```bash
+lesson: <text>
+```
+
+**Examples:**
+```bash
+lesson: Always validate user input
+lesson: Use type hints for better code quality
+```
+
+Lessons are saved to `tasks/lessons.md` and automatically loaded on next session.
+
+---
+
+### 4. `help` - Show Commands
+Display all available commands with examples.
 
 ```bash
-# Relative path
-read: test.py
+help
+```
 
-# Absolute path  
-read: /home/user/project/main.py what does this do?
+---
 
-# Home directory
-read: ~/my_project/app.py analyze the architecture
+### 5. `exit` / `quit` - Exit Application
+Exit the application gracefully.
 
-# With custom prompt
-read: utils.py find potential bugs
+```bash
+exit
+quit
 ```
 
 ## 🏗️ Architecture
 
 ```
 my_ai_agent/
-├── groq_chat.py        # Main application (refactored)
-├── config.py           # Configuration management
-├── exceptions.py       # Custom exceptions
-├── .env                # Environment variables (not in git)
-├── requirements.txt    # Dependencies
+├── groq_chat.py          # Main orchestrator (290 lines)
+├── config.py             # Configuration management
+├── exceptions.py         # Custom exceptions
+├── commands/             # Command handlers (NEW!)
+│   ├── __init__.py      # Package exports
+│   ├── read_command.py  # File reading logic
+│   ├── write_command.py # Code extraction & writing
+│   ├── lesson_command.py # Lesson logging
+│   └── help_command.py  # Help display
+├── .env                  # Environment variables (gitignored)
+├── requirements.txt      # Dependencies
 └── tasks/
-    └── lessons.md      # Logged lessons
+    └── lessons.md        # Logged lessons
 ```
 
 ### Key Components
 
-- **SeniorAIEngineer**: Main AI assistant class
-  - `_parse_read_command()`: Parse file read commands
-  - `_process_file_read()`: Handle file reading
-  - `_manage_history()`: Manage conversation history
-  - `_call_ai_api()`: Make API calls to Groq
-- **Config**: Validated configuration management
-- **Custom Exceptions**: Specific error types for better handling
+#### Main Application
+- **SeniorAIEngineer**: Slim orchestrator class
+  - `get_response()`: Main conversation handler
+  - `_manage_history()`: Sliding window management
+  - `_call_ai_api()`: Groq API interface
+  
+#### Command Modules
+- **ReadCommand**: File analysis (`read:` command)
+- **WriteCommand**: Code block extraction (`write:` command)
+- **LessonCommand**: Lesson logging (`lesson:` command)
+- **HelpCommand**: Help display (`help` command)
+
+#### Support Modules
+- **Config**: Validated environment configuration
+- **Exceptions**: Custom error types
+
+**Code Reduction:** groq_chat.py went from 580 → 290 lines (50% reduction) through modularization!
 
 ## ⚙️ Configuration
 
