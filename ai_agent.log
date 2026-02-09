@@ -1,0 +1,6 @@
+2026-02-09 21:41:02,441 - config - INFO - Configuration loaded: model=llama-3.3-70b-versatile, max_history=20
+2026-02-09 21:41:02,461 - groq_chat - INFO - SeniorAIEngineer initialized successfully
+2026-02-09 21:41:02,461 - groq_chat - WARNING - File not found: /home/ozkan/my_ai_agent/nonexistent.txt
+2026-02-09 22:16:41,805 - config - INFO - Configuration loaded: model=llama-3.3-70b-versatile, max_history=20
+2026-02-09 22:16:41,825 - __main__ - INFO - SeniorAIEngineer initialized successfully
+2026-02-09 22:16:41,825 - __main__ - INFO - User exited application
