@@ -5,8 +5,10 @@ A powerful conversational AI assistant built with Groq API, featuring file analy
 ## ✨ Features
 
 - **📁 File Analysis**: Read and analyze code files with support for relative, absolute, and `~` paths
+- **✍️ Code Extraction**: Extract code blocks from AI responses and save directly to files (NEW!)
 - **🧠 Smart History Management**: Sliding window conversation history with automatic token optimization
 - **📚 Lesson Learning**: Log and apply lessons from past interactions
+- **🎯 Modular Architecture**: Clean command-based structure for easy maintenance
 - **🔒 Secure Configuration**: Environment-based API key management  
 - **📊 Comprehensive Logging**: Debug and track all operations
 - **⚡ Robust Error Handling**: Custom exceptions and detailed error messages
@@ -179,16 +181,10 @@ TEMPERATURE=0.2
 TASKS_DIR=tasks
 ```
 
-## 🧪 Testing
-
-```bash
-# Run verification tests
-python3 test_refactoring.py
-```
 
 ## 📝 Logging
 
-Logs are outputted to console with timestamps:
+All operations are logged to `ai_agent.log` file:
 
 ```
 2026-02-09 21:18:45 - config - INFO - Configuration loaded: model=llama-3.3-70b-versatile
@@ -215,14 +211,22 @@ Logs are outputted to console with timestamps:
 - Wait a moment and try again
 - History automatically cleared for recovery
 
-## 📚 Recent Updates (Phase 1)
+## 📚 Recent Updates
 
-✅ **Modularization**: Broke down monolithic `get_response()` into 4 focused methods  
+### Phase 2: Modularization (Latest)
+✅ **Command Extraction**: Separated all commands into individual modules (`commands/` package)  
+✅ **Write Command**: Added powerful code block extraction and file writing  
+✅ **Help System**: Interactive help command with examples  
+✅ **Code Reduction**: Reduced main file from 580 → 290 lines (50% reduction)  
+✅ **Better Organization**: Each command in its own file for easier maintenance
+
+### Phase 1: Foundation
+✅ **Modularization**: Broke down monolithic `get_response()` into focused methods  
 ✅ **Type Hints**: Full type annotations for better IDE support  
 ✅ **Error Handling**: Custom exception classes with detailed messages  
 ✅ **Logging**: Comprehensive logging system  
 ✅ **Configuration**: Validated config class with environment variables  
-✅ **Documentation**: Complete docstrings and this README
+✅ **Documentation**: Complete docstrings and README
 
 ## 🤝 Contributing
 
