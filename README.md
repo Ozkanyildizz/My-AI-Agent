@@ -190,18 +190,23 @@ my_ai_agent/
 
 ## ⚙️ Configuration
 
+```markdown
 Environment variables in `.env`:
 
 ```bash
 # Required
 GROQ_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+ACTIVE_PROVIDER=gemini # for using gemini 
 
 # Optional (with defaults)
 GROQ_MODEL=llama-3.3-70b-versatile
+GEMINI_MODEL=gemini-1.5-flash
 MAX_HISTORY=20
 HISTORY_KEEP=10
 TEMPERATURE=0.2
 TASKS_DIR=tasks
+```
 ```
 
 
@@ -234,27 +239,6 @@ All operations are logged to `ai_agent.log` file:
 - Wait a moment and try again
 - History automatically cleared for recovery
 
-## 📚 Recent Updates
-
-### Phase 3: Agentic Workflow (Latest)
-✅ **Autonomous Agent**: Implemented "Reason-Act" loop for autonomous problem solving
-✅ **Tool Use**: Integrated Groq API native tool calling (`read_file`, `write_file`, `list_files`)
-✅ **Proactive Execution**: Agent can now explore project structure and fix bugs without explicit step-by-step commands
-✅ **Safety Limits**: Added loop protection to prevent infinite execution cycles
-
-### Phase 2: Modularization
-✅ **Command Extraction**: Separated all commands into individual modules (`commands/` package)  
-✅ **Write Command**: Added powerful code block extraction and file writing  
-✅ **Code Reduction**: Reduced main file complexity significantl
-
-### Phase 1: Foundation
-✅ **Modularization**: Broke down monolithic `get_response()` into focused methods  
-✅ **Type Hints**: Full type annotations for better IDE support  
-✅ **Error Handling**: Custom exception classes with detailed messages  
-✅ **Logging**: Comprehensive logging system  
-✅ **Configuration**: Validated config class with environment variables  
-✅ **Documentation**: Complete docstrings and README
-
 ## 🤝 Contributing
 
 This is a personal project by Özkan. Feedback and suggestions welcome!
@@ -265,4 +249,5 @@ Personal project - All rights reserved
 
 ---
 
-**Built by Özkan** | **Powered by** [Groq](https://groq.com)
+**Built by Özkan YILDIZ** 
+
