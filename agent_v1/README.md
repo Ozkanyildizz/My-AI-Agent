@@ -1,4 +1,4 @@
-# ÖZKAN's AI Engineer Assistant
+# ÖZKAN's AI Engineer Assistant V1
 
 A powerful conversational AI assistant built with Groq API, featuring file analysis, conversation history management, and lesson logging capabilities.
 
