@@ -38,7 +38,7 @@ write: test.py
 
 - Python 3.8+
 - Groq API key ([Get one here](https://console.groq.com))
-
+- Gemini API key ([Get one here](https://aistudio.google.com/app/api-keys))
 ### Installation
 
 ```bash
